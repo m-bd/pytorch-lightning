@@ -32,6 +32,7 @@ from pytorch_lightning.utilities.parsing import parse_class_init_keys
 
 PRIMITIVE_TYPES = (bool, int, float, str)
 ALLOWED_CONFIG_TYPES = (AttributeDict, MutableMapping, Namespace)
+
 if OMEGACONF_AVAILABLE:
     from omegaconf import OmegaConf
 

@@ -45,7 +45,7 @@ APEX_AVAILABLE = _module_available("apex.amp")
 NATIVE_AMP_AVALAIBLE = _module_available("torch.cuda.amp.autocast")
 XLA_AVAILABLE = _module_available("torch_xla")
 HOROVOD_AVAILABLE = _module_available("horovod.torch")
-OMEGACONF_AVAILABLE = _module_available("omegaconf")
+OMEGACONF_AVAILABLE = _module_available("omegaconf.OmegaConf")
 HYDRA_AVAILABLE = _module_available("hydra")
 
 TPU_AVAILABLE = XLADeviceUtils.tpu_device_exists()
