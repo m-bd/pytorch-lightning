@@ -17,16 +17,13 @@
 from typing import Any, Dict, List, Union
 
 import torch
-from pytorch_lightning.utilities import AMPType, move_data_to_device, rank_zero_warn
-from torch import Tensor
+from pytorch_lightning.utilities import move_data_to_device, rank_zero_warn, APEX_AVAILABLE
 from torch.optim.optimizer import Optimizer
 from torch.utils.data import DataLoader
 
 
-try:
+if APEX_AVAILABLE:
     from apex import amp
-except ImportError:
-    amp = None
 
 
 class ModelHooks:

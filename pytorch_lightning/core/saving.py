@@ -25,17 +25,15 @@ import torch
 import yaml
 
 from pytorch_lightning import _logger as log
-from pytorch_lightning.utilities import rank_zero_warn, AttributeDict
+from pytorch_lightning.utilities import rank_zero_warn, AttributeDict, OMEGACONF_AVAILABLE
 from pytorch_lightning.utilities.cloud_io import load as pl_load
 from pytorch_lightning.utilities.cloud_io import get_filesystem
 from pytorch_lightning.utilities.parsing import parse_class_init_keys
 
 PRIMITIVE_TYPES = (bool, int, float, str)
 ALLOWED_CONFIG_TYPES = (AttributeDict, MutableMapping, Namespace)
-try:
+if OMEGACONF_AVAILABLE:
     from omegaconf import OmegaConf
-except ImportError:
-    OmegaConf = None
 
 # the older shall be on the top
 CHECKPOINT_PAST_HPARAMS_KEYS = (

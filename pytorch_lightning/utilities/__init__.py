@@ -16,11 +16,11 @@ import importlib
 from enum import Enum
 
 import numpy
-import torch
 
 from pytorch_lightning.utilities.apply_func import move_data_to_device
 from pytorch_lightning.utilities.distributed import rank_zero_info, rank_zero_only, rank_zero_warn
 from pytorch_lightning.utilities.parsing import AttributeDict, flatten_dict, is_picklable
+from pytorch_lightning.utilities.xla_device_utils import XLADeviceUtils
 
 
 def _module_available(module_path: str) -> bool:
@@ -42,7 +42,13 @@ def _module_available(module_path: str) -> bool:
 
 
 APEX_AVAILABLE = _module_available("apex.amp")
-NATIVE_AMP_AVALAIBLE = hasattr(torch.cuda, "amp") and hasattr(torch.cuda.amp, "autocast")
+NATIVE_AMP_AVALAIBLE = _module_available("torch.cuda.amp.autocast")
+XLA_AVAILABLE = _module_available("torch_xla")
+HOROVOD_AVAILABLE = _module_available("horovod.torch")
+OMEGACONF_AVAILABLE = _module_available("omegaconf")
+HYDRA_AVAILABLE = _module_available("hydra")
+
+TPU_AVAILABLE = XLADeviceUtils.tpu_device_exists()
 
 FLOAT16_EPSILON = numpy.finfo(numpy.float16).eps
 FLOAT32_EPSILON = numpy.finfo(numpy.float32).eps
