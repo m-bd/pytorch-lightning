@@ -361,7 +361,7 @@ def save_hparams_to_yaml(config_yaml, hparams: Union[dict, Namespace]) -> None:
         hparams = dict(hparams)
 
     # saving with OmegaConf objects
-    if OmegaConf is not None:
+    if OMEGACONF_AVAILABLE:
         if OmegaConf.is_config(hparams):
             with fs.open(config_yaml, "w", encoding="utf-8") as fp:
                 OmegaConf.save(hparams, fp, resolve=True)

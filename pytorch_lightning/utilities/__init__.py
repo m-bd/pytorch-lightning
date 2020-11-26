@@ -26,7 +26,7 @@ from pytorch_lightning.utilities.xla_device_utils import XLADeviceUtils
 def _module_available(module_path: str) -> bool:
     """Testing if given module is avalaible in your env
 
-    >>> _module_available('system')
+    >>> _module_available('os')
     True
     >>> _module_available('bla.bla')
     False
