@@ -19,5 +19,6 @@ def test_module_exists():
     """Test if the some 3rd party libs are available"""
     assert _module_available("torch")
     assert _module_available("torch.nn.parallel")
+    assert not _module_available("torch.nn.asdf")
     assert not _module_available("asdf")
     assert not _module_available("asdf.bla.asdf")
